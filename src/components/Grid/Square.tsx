@@ -1,14 +1,13 @@
 import React, { useEffect } from "react"
-import { GridPosition, SnakeSection, Fruit } from "../../types"
+import { SnakeSection, Fruit } from "../../types"
 
 interface SquareProps {
-    position: GridPosition
     snakeSection?: SnakeSection
     fruit?: Fruit
     fruitSquareHit(fruit: Fruit): void
 }
 
-const Square = function ({ position, fruit, snakeSection, fruitSquareHit }: SquareProps) {
+const Square = function ({ fruit, snakeSection, fruitSquareHit }: SquareProps) {
     const hasFruit = fruit !== undefined
 
     const createSnakeClass = function (snakeSection: SnakeSection | undefined) {
