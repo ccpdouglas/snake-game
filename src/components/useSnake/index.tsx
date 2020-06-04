@@ -10,6 +10,7 @@ interface SnakeContext {
     positions: SnakePosition[]
     headPosition: SnakePosition
     direction: Direction
+    snakeHitSelf: boolean
     eatFruit(fruid: Fruit): void
     updateDirection(direction: Direction): void
     moveSnake(headPosition: SnakePosition, direction: Direction): void
@@ -65,6 +66,7 @@ const delay = function (number: number): Promise<void> {
 export default function ({ startingPosition, startingLength }: UseSnakeProps): SnakeContext {
     const [direction, setDirection] = useState(startingPosition.direction)
     const [positions, setPositions] = useState(increaseLengthByInt([startingPosition], startingLength))
+    const [snakeHitSelf, setSnakeHitSelf] = useState(false)
 
     const headPosition = positions[positions.length - 1]
 
@@ -83,8 +85,13 @@ export default function ({ startingPosition, startingLength }: UseSnakeProps): S
     }, [])
 
     const moveSnake = useCallback(async function (headPosition, direction): Promise<void> {
-        setPositions((previousPositions) => createPositions(previousPositions, createNewPositionForward(headPosition, direction)))
+        setPositions((previousPositions) => {
+            const newPosition = createNewPositionForward(headPosition, direction)
+            const duplicatedPositions = previousPositions.filter(({ x, y }) => x === newPosition.x && y === newPosition.y)
+            setSnakeHitSelf(duplicatedPositions.length > 0)
+            return createPositions(previousPositions, newPosition)
+        })
     }, [])
 
-    return { eatFruit, headPosition, positions, updateDirection, direction, moveSnake }
+    return { headPosition, positions, snakeHitSelf, direction, eatFruit, updateDirection, moveSnake }
 }

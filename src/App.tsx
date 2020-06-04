@@ -4,8 +4,8 @@ import { Direction, SnakePosition } from "./types"
 
 import "./App.css"
 
-const gridSize = 10
-const startingLength = 3
+const gridSize = 15
+const startingLength = 5
 const startingPosition = { x: 5, y: 5, direction: Direction.down }
 
 const isOutOfBounds = function ({ x, y }: SnakePosition): boolean {
@@ -18,7 +18,10 @@ export default function () {
     const snakeMoveTO = useRef<any>()
     const [gameOver, setGameOver] = useState(false)
 
-    const { positions, headPosition, updateDirection, moveSnake, direction } = useSnake({ startingPosition, startingLength })
+    const { positions, headPosition, direction, snakeHitSelf, updateDirection, moveSnake } = useSnake({
+        startingPosition,
+        startingLength
+    })
 
     useEffect(() => {
         window.addEventListener("keyup", (e) => {
@@ -35,6 +38,11 @@ export default function () {
         if (isGameOver) setGameOver(isGameOver)
         else snakeMoveTO.current = setTimeout(() => moveSnake(headPosition, direction), 150)
     }, [direction, headPosition, moveSnake])
+
+    useEffect(() => {
+        setGameOver(snakeHitSelf)
+        if (snakeHitSelf) clearTimeout(snakeMoveTO.current)
+    }, [snakeHitSelf])
 
     if (gameOver) return <span>game over</span>
 
