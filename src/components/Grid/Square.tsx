@@ -8,7 +8,7 @@ interface SquareProps {
     fruitSquareHit(fruit: Fruit): void
 }
 
-export default function ({ position, fruit, snakeSection, fruitSquareHit }: SquareProps) {
+const Square = function ({ position, fruit, snakeSection, fruitSquareHit }: SquareProps) {
     const hasFruit = fruit !== undefined
 
     const createSnakeClass = function (snakeSection: SnakeSection | undefined) {
@@ -22,3 +22,5 @@ export default function ({ position, fruit, snakeSection, fruitSquareHit }: Squa
 
     return <span className={`Square ${hasFruit && "FruitSquare"} ${createSnakeClass(snakeSection)}`}></span>
 }
+
+export default Square

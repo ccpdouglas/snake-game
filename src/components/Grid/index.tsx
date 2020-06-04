@@ -50,7 +50,7 @@ const GridRow = function ({ width, row, snakePositions, fruitPosition, fruitSqua
     return <div className={`Row ${className}`}>{squares}</div>
 }
 
-export default function ({ size, headPosition, positions, fruitPosition, fruitSquareHit }: GridProps) {
+const Grid = function ({ size, headPosition, positions, fruitPosition, fruitSquareHit }: GridProps) {
     const rows = [...new Array(size)].map((_: undefined, index: number) => (
         <GridRow
             key={index}
@@ -65,3 +65,5 @@ export default function ({ size, headPosition, positions, fruitPosition, fruitSq
 
     return <div className="Grid">{rows}</div>
 }
+
+export default Grid

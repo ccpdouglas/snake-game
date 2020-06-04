@@ -24,7 +24,7 @@ const createFruitPosition = function (): GridPosition {
     return { x, y }
 }
 
-export default function () {
+const App = function () {
     const snakeMoveTO = useRef<any>()
     const [gameOver, setGameOver] = useState(false)
     const [fruitPosition, setFruitPosition] = useState(createFruitPosition())
@@ -76,3 +76,5 @@ export default function () {
         </div>
     )
 }
+
+export default App
