@@ -30,3 +30,7 @@
 .Row > span.Square.SnakeSquare.SnakeSquareHead {
     background-color: red !important;
 }
+
+.Row > span.Square.FruitSquare {
+    background-color: green !important;
+}
