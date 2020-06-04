@@ -22,3 +22,7 @@
 .Row.EvenRow > span.Square:nth-child(even) {
     background-color: #eee;
 }
+
+.Row > span.Square.SnakeSquare {
+    background-color: #000;
+}

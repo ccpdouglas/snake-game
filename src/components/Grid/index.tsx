@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import Square from "./Square"
 
 import "./Grid.css"
@@ -21,6 +21,8 @@ const GridRow = function ({ width, row }: GridRowProps) {
 }
 
 export default function ({ size }: GridProps) {
+    const [snakePositions, setSnakePositions] = useState()
+
     const rows = [...new Array(size)].map((_: undefined, index: number) => <GridRow row={index} width={size} />)
 
     return <div className="Grid">{rows}</div>

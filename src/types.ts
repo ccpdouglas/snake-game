@@ -14,16 +14,11 @@ export interface SnakePosition extends GridPosition {
     direction: Direction
 }
 
-export interface SnakeProviderProps {
-    startingPosition: GridPosition
-    startingLength: number
+export interface SnakeSection {
     direction: Direction
+    nextDirection: Direction
 }
 
-export interface SnakeContext {
-    positions: SnakePosition[]
-    headPosition: SnakePosition
-    length: number
-    eatFruit(): void
-    updateDirection(direction: Direction): void
+export interface Fruit {
+    value: number
 }
