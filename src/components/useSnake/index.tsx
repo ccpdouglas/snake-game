@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState } from "react"
 import { Direction, SnakePosition, Fruit } from "../../types"
 
 interface UseSnakeProps {
