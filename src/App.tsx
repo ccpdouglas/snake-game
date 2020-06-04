@@ -15,12 +15,14 @@ function randomIntFromInterval(min: number, max: number) {
 const isOutOfBounds = function ({ x, y }: SnakePosition): boolean {
     if (x < 0 || y < 0) return true
     if (x > gridSize || y > gridSize) return true
+
     return false
 }
 
 const createFruitPosition = function (): GridPosition {
     const x = randomIntFromInterval(0, gridSize - 1)
     const y = randomIntFromInterval(0, gridSize - 1)
+
     return { x, y }
 }
 
@@ -43,23 +45,37 @@ const App = function () {
     )
 
     useEffect(() => {
-        window.addEventListener("keyup", (e) => {
-            if (e.key === "ArrowLeft") updateDirection(Direction.left)
-            if (e.key === "ArrowUp") updateDirection(Direction.up)
-            if (e.key === "ArrowRight") updateDirection(Direction.right)
-            if (e.key === "ArrowDown") updateDirection(Direction.down)
-        })
+        const handleKeyUp = function (key: string) {
+            switch (key) {
+                case "ArrowLeft":
+                    updateDirection(Direction.left)
+                    break
+                case "ArrowUp":
+                    updateDirection(Direction.up)
+                    break
+                case "ArrowRight":
+                    updateDirection(Direction.right)
+                    break
+                case "ArrowDown":
+                    updateDirection(Direction.down)
+                    break
+            }
+        }
+
+        window.addEventListener("keyup", ({ key }) => handleKeyUp(key))
     }, [updateDirection])
 
     useEffect(() => {
         clearTimeout(snakeMoveTO.current)
         if (isOutOfBounds(headPosition)) setGameOver(true)
-        else snakeMoveTO.current = setTimeout(() => moveSnake(headPosition, direction), 150)
+        else snakeMoveTO.current = setTimeout(() => moveSnake(headPosition, direction), 75)
     }, [direction, headPosition, moveSnake])
 
     useEffect(() => {
-        setGameOver(snakeHitSelf)
-        if (snakeHitSelf) clearTimeout(snakeMoveTO.current)
+        if (snakeHitSelf) {
+            setGameOver(true)
+            clearTimeout(snakeMoveTO.current)
+        }
     }, [snakeHitSelf])
 
     if (gameOver) return <span>game over</span>
