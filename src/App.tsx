@@ -35,6 +35,7 @@ const App = function () {
     const snakeMoveTO = useRef<any>()
     const [gameOver, setGameOver] = useState(false)
     const [fruit, setFruit] = useState(createFruit(createFruitPosition()))
+    const [score, setScore] = useState(0)
 
     const { positions, headPosition, direction, snakeHitSelf, updateDirection, moveSnake, eatFruit, resetSnake } = useSnake({
         startingPosition,
@@ -43,12 +44,14 @@ const App = function () {
 
     const restartGame = function () {
         resetSnake()
+        setScore(0)
         setFruit(createFruit(createFruitPosition()))
         setGameOver(false)
     }
 
     const fruitSquareHit = useCallback(
         function (fruit: Fruit) {
+            setScore((prev) => prev + 1)
             eatFruit(fruit)
             setFruit(createFruit(createFruitPosition()))
         },
@@ -91,7 +94,7 @@ const App = function () {
 
     return (
         <div className="App" style={{ width: `${gridSize * 30}px` }}>
-            {!gameOver ? "" : <GameOver restartGame={restartGame} />}
+            {!gameOver ? "" : <GameOver restartGame={restartGame} score={score} />}
             <Grid
                 size={gridSize}
                 headPosition={headPosition}
