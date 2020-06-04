@@ -24,5 +24,9 @@
 }
 
 .Row > span.Square.SnakeSquare {
-    background-color: #000;
+    background-color: #000 !important;
+}
+
+.Row > span.Square.SnakeSquare.SnakeSquareHead {
+    background-color: red !important;
 }

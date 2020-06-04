@@ -1,2 +1,2 @@
 export { default as Grid } from "./Grid"
-export { default as Snake } from "./Snake"
+export { default as useSnake } from "./useSnake"

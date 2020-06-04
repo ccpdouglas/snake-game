@@ -11,5 +11,10 @@ export default function ({ position, fruit, snakeSection }: SquareProps) {
     const hasFruit = fruit !== undefined
     const hasSnake = snakeSection !== undefined
 
-    return <span className={`Square ${hasFruit && "FruitSquare"} ${hasSnake && "SnakeSquare"}`}></span>
+    const createSnakeClass = function (snakeSection: SnakeSection | undefined) {
+        if (!snakeSection) return ""
+        return `SnakeSquare ${snakeSection.isHead ? "SnakeSquareHead" : ""}`
+    }
+
+    return <span className={`Square ${hasFruit && "FruitSquare"} ${createSnakeClass(snakeSection)}`}></span>
 }

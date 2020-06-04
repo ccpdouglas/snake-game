@@ -2,7 +2,7 @@ export enum Direction {
     up,
     down,
     left,
-    right,
+    right
 }
 
 export interface GridPosition {
@@ -16,7 +16,7 @@ export interface SnakePosition extends GridPosition {
 
 export interface SnakeSection {
     direction: Direction
-    nextDirection: Direction
+    isHead: boolean
 }
 
 export interface Fruit {
