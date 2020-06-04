@@ -8,11 +8,11 @@ interface GridProps {
     size: number
     headPosition: SnakePosition
     positions: SnakePosition[]
-    fruitPosition: GridPosition
+    fruit: Fruit
     fruitSquareHit(fruit: Fruit): void
 }
 
-const Grid = function ({ size, headPosition, positions, fruitPosition, fruitSquareHit }: GridProps) {
+const Grid = function ({ size, headPosition, positions, fruit, fruitSquareHit }: GridProps) {
     const rows = [...new Array(size)].map((_: undefined, index: number) => (
         <GridRow
             key={index}
@@ -21,7 +21,7 @@ const Grid = function ({ size, headPosition, positions, fruitPosition, fruitSqua
             headPosition={headPosition}
             snakePositions={positions}
             fruitSquareHit={fruitSquareHit}
-            fruitPosition={fruitPosition}
+            fruit={fruit}
         />
     ))
 

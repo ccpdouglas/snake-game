@@ -7,7 +7,7 @@ interface GridRowProps {
     row: number
     headPosition: SnakePosition
     snakePositions: SnakePosition[]
-    fruitPosition: GridPosition
+    fruit: Fruit
     fruitSquareHit(fruit: Fruit): void
 }
 
@@ -21,18 +21,24 @@ const createSnakeSection = function (snakePositions: SnakePosition[], index: num
     return { direction: snakePositions[index].direction, isHead: index === snakePositions.length - 1 }
 }
 
-const GridRow = function ({ width, row, snakePositions, fruitPosition, fruitSquareHit }: GridRowProps) {
+const GridRow = function ({ width, row, snakePositions, fruit, fruitSquareHit }: GridRowProps) {
     const isOdd = row % 2 !== 0
     const className = isOdd ? "OddRow" : "EvenRow"
 
     const squares = [...new Array(width)].map((_: undefined, index: number) => {
         const position = { x: index, y: row }
-        const hasFruit = fruitPosition.x === position.x && fruitPosition.y === position.y
+        const hasFruit = fruit.x === position.x && fruit.y === position.y
         const snakePositionIndex = findSnakePositionIndexByGridPosition(position, snakePositions)
         const snakeSection = snakePositionIndex > -1 ? createSnakeSection(snakePositions, snakePositionIndex) : undefined
-        const fruit = hasFruit ? { value: 1 } : undefined
 
-        return <Square key={index} snakeSection={snakeSection} fruit={fruit} fruitSquareHit={fruitSquareHit} />
+        return (
+            <Square
+                key={index}
+                snakeSection={snakeSection}
+                fruit={hasFruit ? fruit : undefined}
+                fruitSquareHit={fruitSquareHit}
+            />
+        )
     })
 
     return <div className={`Row ${className}`}>{squares}</div>

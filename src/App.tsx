@@ -26,10 +26,14 @@ const createFruitPosition = function (): GridPosition {
     return { x, y }
 }
 
+const createFruit = function (position: GridPosition): Fruit {
+    return { ...position, value: randomIntFromInterval(1, 3) }
+}
+
 const App = function () {
     const snakeMoveTO = useRef<any>()
     const [gameOver, setGameOver] = useState(false)
-    const [fruitPosition, setFruitPosition] = useState(createFruitPosition())
+    const [fruit, setFruit] = useState(createFruit(createFruitPosition()))
 
     const { positions, headPosition, direction, snakeHitSelf, updateDirection, moveSnake, eatFruit } = useSnake({
         startingPosition,
@@ -39,7 +43,7 @@ const App = function () {
     const fruitSquareHit = useCallback(
         function (fruit: Fruit) {
             eatFruit(fruit)
-            setFruitPosition(createFruitPosition())
+            setFruit(createFruit(createFruitPosition()))
         },
         [eatFruit]
     )
@@ -86,7 +90,7 @@ const App = function () {
                 size={gridSize}
                 headPosition={headPosition}
                 positions={positions}
-                fruitPosition={fruitPosition}
+                fruit={fruit}
                 fruitSquareHit={fruitSquareHit}
             />
         </div>

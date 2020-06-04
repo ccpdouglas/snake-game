@@ -14,11 +14,11 @@ export interface SnakePosition extends GridPosition {
     direction: Direction
 }
 
+export interface Fruit extends GridPosition {
+    value: number
+}
+
 export interface SnakeSection {
     direction: Direction
     isHead: boolean
-}
-
-export interface Fruit {
-    value: number
 }
