@@ -3,6 +3,7 @@ import { Grid, useSnake } from "./components"
 import { Direction, SnakePosition, GridPosition, Fruit } from "./types"
 
 import "./App.css"
+import GameOver from "./components/GameOver"
 
 const gridSize = 15
 const startingLength = 5
@@ -82,10 +83,9 @@ const App = function () {
         }
     }, [snakeHitSelf])
 
-    if (gameOver) return <span>game over</span>
-
     return (
-        <div className="App">
+        <div className="App" style={{ width: `${gridSize * 30}px` }}>
+            {!gameOver ? "" : <GameOver restartGame={console.log} />}
             <Grid
                 size={gridSize}
                 headPosition={headPosition}

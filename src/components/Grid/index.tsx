@@ -1,7 +1,7 @@
 import React from "react"
-import { SnakePosition, GridPosition, Fruit } from "../../types"
+import { SnakePosition, Fruit } from "../../types"
 
-import "./Grid.css"
+import "./index.css"
 import GridRow from "./GridRow"
 
 interface GridProps {

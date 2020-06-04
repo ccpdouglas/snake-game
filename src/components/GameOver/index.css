@@ -1,0 +1,31 @@
+.GameOver {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.GameOver > * {
+    margin: 5px;
+}
+
+.GameOver > h4 {
+    color: #eee;
+    font-size: 25px;
+}
+
+.GameOver > p {
+    color: #aaa;
+    display: table;
+    border: solid 2px #aaa;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 6px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
