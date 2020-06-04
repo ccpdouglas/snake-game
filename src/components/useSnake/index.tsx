@@ -14,6 +14,7 @@ interface SnakeContext {
     eatFruit(fruid: Fruit): void
     updateDirection(direction: Direction): void
     moveSnake(headPosition: SnakePosition, direction: Direction): void
+    resetSnake(): void
 }
 
 const createNewPositionBehind = function (position: SnakePosition): SnakePosition {
@@ -64,6 +65,12 @@ export default function ({ startingPosition, startingLength }: UseSnakeProps): S
 
     const headPosition = positions[positions.length - 1]
 
+    const resetSnake = function () {
+        setSnakeHitSelf(false)
+        setDirection(startingPosition.direction)
+        setPositions(increaseLengthByInt([startingPosition], startingLength))
+    }
+
     const eatFruit = useCallback(function (fruit: Fruit): void {
         setPositions((prev) => increaseLengthByInt(prev, fruit.value))
     }, [])
@@ -87,5 +94,5 @@ export default function ({ startingPosition, startingLength }: UseSnakeProps): S
         })
     }, [])
 
-    return { headPosition, positions, snakeHitSelf, direction, eatFruit, updateDirection, moveSnake }
+    return { headPosition, positions, snakeHitSelf, direction, eatFruit, updateDirection, moveSnake, resetSnake }
 }
