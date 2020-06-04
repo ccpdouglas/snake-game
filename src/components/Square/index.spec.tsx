@@ -1,7 +1,7 @@
 import React from "react"
 import { render } from "@testing-library/react"
-import Square from "."
 import { Direction } from "../../types"
+import Square from "."
 
 const fruitSquareHit = jest.fn()
 
@@ -43,5 +43,17 @@ describe("Square", () => {
         )
 
         expect(fruitSquareHit).toHaveBeenCalled()
+    })
+
+    it("shouldn't contain fruit styling  when fruit not provided", () => {
+        const { container } = render(<Square fruitSquareHit={fruitSquareHit} />)
+
+        expect(container.firstChild).not.toHaveClass("FruitSquare")
+    })
+
+    it("shouldn't contain snake styling  when snake not provided", () => {
+        const { container } = render(<Square fruitSquareHit={fruitSquareHit} />)
+
+        expect(container.firstChild).not.toHaveClass("SnakeSquare")
     })
 })

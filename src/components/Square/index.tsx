@@ -19,7 +19,7 @@ const Square = function ({ fruit, snakeSection, fruitSquareHit }: SquareProps) {
         if (snakeSection?.isHead && fruit) fruitSquareHit(fruit)
     }, [fruit, fruitSquareHit, snakeSection])
 
-    return <span className={`Square ${hasFruit && "FruitSquare"} ${createSnakeClass(snakeSection)}`}></span>
+    return <span className={`Square ${hasFruit ? "FruitSquare" : ""} ${createSnakeClass(snakeSection)}`}></span>
 }
 
 export default Square
