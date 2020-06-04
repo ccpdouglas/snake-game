@@ -1,8 +1,8 @@
 import React from "react"
 import { SnakePosition, Fruit } from "../../types"
+import GridRow from "../GridRow"
 
 import "./index.css"
-import GridRow from "./GridRow"
 
 interface GridProps {
     size: number

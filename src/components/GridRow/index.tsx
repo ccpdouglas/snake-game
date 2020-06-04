@@ -1,6 +1,6 @@
 import React from "react"
 import { SnakePosition, GridPosition, Fruit, SnakeSection } from "../../types"
-import Square from "./Square"
+import Square from "../Square"
 
 interface GridRowProps {
     width: number
