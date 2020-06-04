@@ -57,12 +57,6 @@ const increaseLengthByInt = function (positions: SnakePosition[], length: number
     return positions
 }
 
-const delay = function (number: number): Promise<void> {
-    return new Promise((resolve, reject) => {
-        setTimeout(resolve, number)
-    })
-}
-
 export default function ({ startingPosition, startingLength }: UseSnakeProps): SnakeContext {
     const [direction, setDirection] = useState(startingPosition.direction)
     const [positions, setPositions] = useState(increaseLengthByInt([startingPosition], startingLength))
@@ -70,9 +64,9 @@ export default function ({ startingPosition, startingLength }: UseSnakeProps): S
 
     const headPosition = positions[positions.length - 1]
 
-    const eatFruit = function (fruit: Fruit): void {
+    const eatFruit = useCallback(function (fruit: Fruit): void {
         setPositions((prev) => increaseLengthByInt(prev, fruit.value))
-    }
+    }, [])
 
     const updateDirection = useCallback(function (direction: Direction) {
         setDirection((previous) => {
