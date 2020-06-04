@@ -33,6 +33,7 @@ const GridRow = function ({ width, row, snakePositions, fruit, fruitSquareHit }:
 
         return (
             <Square
+                data-testid="square"
                 key={index}
                 snakeSection={snakeSection}
                 fruit={hasFruit ? fruit : undefined}
