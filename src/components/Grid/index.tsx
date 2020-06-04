@@ -27,7 +27,7 @@ const createSnakeSection = function (snakePositions: SnakePosition[], index: num
     return { direction: snakePositions[index].direction, isHead: index === snakePositions.length - 1 }
 }
 
-const GridRow = function ({ width, row, headPosition, snakePositions }: GridRowProps) {
+const GridRow = function ({ width, row, snakePositions }: GridRowProps) {
     const isOdd = row % 2 !== 0
     const className = isOdd ? "OddRow" : "EvenRow"
 
