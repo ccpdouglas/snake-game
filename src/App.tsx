@@ -31,6 +31,8 @@ const createFruit = function (position: GridPosition): Fruit {
     return { ...position, value: randomIntFromInterval(1, 3) }
 }
 
+const snakeMovementTimeoutMS = 75
+
 const App = function () {
     const snakeMoveTO = useRef<any>()
     const [gameOver, setGameOver] = useState(false)
@@ -83,7 +85,7 @@ const App = function () {
     useEffect(() => {
         clearTimeout(snakeMoveTO.current)
         if (isOutOfBounds(headPosition)) setGameOver(true)
-        else snakeMoveTO.current = setTimeout(() => moveSnake(headPosition, direction), 75)
+        else snakeMoveTO.current = setTimeout(() => moveSnake(headPosition, direction), snakeMovementTimeoutMS)
     }, [direction, headPosition, moveSnake])
 
     useEffect(() => {
