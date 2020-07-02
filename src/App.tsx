@@ -59,7 +59,7 @@ const App = function () {
     )
 
     useEffect(() => {
-        const handleKeyUp = function (key: string) {
+        const handleKeyUp = function ({ key }: KeyboardEvent) {
             switch (key) {
                 case "ArrowLeft":
                     updateDirection(Direction.left)
@@ -76,7 +76,8 @@ const App = function () {
             }
         }
 
-        window.addEventListener("keyup", ({ key }) => handleKeyUp(key))
+        window.addEventListener("keyup", handleKeyUp)
+        return () => window.removeEventListener("keyup", handleKeyUp)
     }, [updateDirection])
 
     useEffect(() => {
