@@ -15,7 +15,7 @@ function randomIntFromInterval(min: number, max: number) {
 
 const isOutOfBounds = function ({ x, y }: SnakePosition): boolean {
     if (x < 0 || y < 0) return true
-    if (x > gridSize || y > gridSize) return true
+    if (x > gridSize - 1 || y > gridSize - 1) return true
 
     return false
 }
