@@ -51,7 +51,7 @@ const App = function () {
 
     const fruitSquareHit = useCallback(
         function (fruit: Fruit) {
-            setScore((prev) => prev + 1)
+            setScore((prev) => prev + fruit.value)
             eatFruit(fruit)
             setFruit(createFruit(createFruitPosition()))
         },
